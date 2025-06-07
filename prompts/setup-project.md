@@ -1,6 +1,5 @@
 # Device Frame JS - Project Setup
 
-## Project Overview
 This guide sets up a framework-agnostic device frame component library with framework-specific bindings. The library is tree-shakable and supports Svelte, React, Vue, and vanilla JS.
 
 ## Project Structure
@@ -18,97 +17,121 @@ This guide sets up a framework-agnostic device frame component library with fram
 └── package.json        # Root package.json
 ```
 
-## Setup Commands
+## Automated Project Setup Script
 
-1. **Initialize Project**
+To set up the project, you can run the following script in your terminal (e.g., Git Bash on Windows):
+
 ```bash
+#!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+echo "--- Initializing Project ---"
 # Initialize git if not already done
 if [ ! -d ".git" ]; then
   git init
-  echo "node_modules" > .gitignore
+  echo "node_modules" >> .gitignore
   echo "dist" >> .gitignore
   echo ".DS_Store" >> .gitignore
   echo "*.local" >> .gitignore
   echo "*.log" >> .gitignore
   echo "coverage" >> .gitignore
   echo ".turbo" >> .gitignore
+  echo "Initialized git repository and .gitignore."
+else
+  echo "Git repository already initialized."
 fi
 
 # Initialize package.json if not exists
 if [ ! -f "package.json" ]; then
   bun init -y
-  
+  echo "Initialized root package.json."
   # Create basic README if not exists
   if [ ! -f "README.md" ]; then
     echo "# Device Frame JS" > README.md
     echo "A framework-agnostic device frame component library" >> README.md
+    echo "Created README.md."
+  else
+    echo "README.md already exists."
   fi
+else
+  echo "Root package.json already exists."
 fi
-```
 
-2. **Setup Workspace**
-```bash
+echo "--- Setting up Workspace ---"
 # Install root dependencies
+echo "Installing root dependencies..."
 bun add -D typescript @types/node --root
+echo "Root dependencies installed."
 
 # Create workspace directories if they don't exist
-mkdir -p packages/core
-mkdir -p packages/svelte
-mkdir -p packages/react
-mkdir -p packages/vue
-mkdir -p packages/vanilla
-mkdir -p examples
-```
+echo "Creating workspace directories..."
+mkdir -p packages/core packages/svelte packages/react packages/vue packages/vanilla examples
+echo "Workspace directories created."
 
-3. **Core Package Setup**
-```bash
-(
-  cd packages/core
-  if [ ! -f "package.json" ]; then
-    bun init -y
-    bun add -D typescript @types/node
-    bun tsc --init
-  fi
-)
-
-4. **Svelte Package Setup**
-```bash
-if [ ! -d "packages/svelte/node_modules" ]; then
+echo "--- Core Package Setup ---"
+CORE_PATH="packages/core"
+if [ ! -f "${CORE_PATH}/package.json" ]; then
+  echo "Setting up core package..."
   (
-    cd packages/svelte
-    bun create vite . --template svelte-ts
+    cd "${CORE_PATH}" && \
+    bun init -y && \
+    bun add -D typescript @types/node && \
+    bun tsc --init
+  )
+  echo "Core package setup complete."
+else
+  echo "Core package already set up."
+fi
+
+echo "--- Svelte Package Setup ---"
+SVELTE_PATH="packages/svelte"
+if [ ! -d "${SVELTE_PATH}/node_modules" ]; then
+  echo "Setting up Svelte package..."
+  (
+    cd "${SVELTE_PATH}" && \
+    bun create vite . --template svelte-ts && \
     bun add -D svelte @sveltejs/vite-plugin-svelte
   )
+  echo "Svelte package setup complete."
+else
+  echo "Svelte package already set up."
 fi
-```
 
-5. **React Package Setup**
-```bash
-if [ ! -d "packages/react/node_modules" ]; then
+echo "--- React Package Setup ---"
+REACT_PATH="packages/react"
+if [ ! -d "${REACT_PATH}/node_modules" ]; then
+  echo "Setting up React package..."
   (
-    cd packages/react
-    bun create vite . --template react-ts
+    cd "${REACT_PATH}" && \
+    bun create vite . --template react-ts && \
     bun add -D @types/react @types/react-dom
   )
+  echo "React package setup complete."
+else
+  echo "React package already set up."
 fi
-```
 
-6. **Vue Package Setup**
-```bash
-if [ ! -d "packages/vue/node_modules" ]; then
+echo "--- Vue Package Setup ---"
+VUE_PATH="packages/vue"
+if [ ! -d "${VUE_PATH}/node_modules" ]; then
+  echo "Setting up Vue package..."
   (
-    cd packages/vue
-    bun create vite . --template vue-ts
+    cd "${VUE_PATH}" && \
+    bun create vite . --template vue-ts && \
     bun add -D @vitejs/plugin-vue @vue/compiler-sfc
   )
+  echo "Vue package setup complete."
+else
+  echo "Vue package already set up."
 fi
-```
 
-7. **Root Configuration**
-```bash
+echo "--- Root Configuration ---"
 # Create root tsconfig if not exists
 if [ ! -f "tsconfig.json" ]; then
-  cat > tsconfig.json << 'EOL'
+  echo "Creating root tsconfig.json..."
+  cat > tsconfig.json << 'EOF'
 {
   "compilerOptions": {
     "composite": true,
@@ -132,10 +155,15 @@ if [ ! -f "tsconfig.json" ]; then
   "include": ["packages/**/*"],
   "exclude": ["node_modules", "dist"]
 }
-EOL
+EOF
+  echo "Root tsconfig.json created."
+else
+  echo "Root tsconfig.json already exists."
+fi
 
 # Update root package.json
-cat > package.json << 'EOL'
+echo "Updating root package.json..."
+cat > package.json << 'EOF'
 {
   "name": "device-frame-js",
   "private": true,
@@ -154,16 +182,26 @@ cat > package.json << 'EOL'
     "@types/node": "^20.0.0"
   }
 }
-EOL
+EOF
+echo "Root package.json updated."
 
 # Install Turbo for monorepo management
+echo "Installing Turbo..."
 bun add -D turbo
+echo "Turbo installed."
 
 # Create initial commit if in a git repository
 if [ -d ".git" ]; then
+  echo "Creating initial git commit..."
   git add .
   git commit -m "Initial commit: Project structure setup"
+  echo "Initial commit created."
+else
+  echo "Not a git repository, skipping initial commit."
 fi
+
+echo "--- Project Setup Complete! ---"
+echo "You can now run 'bun run dev' to start development servers."
 ```
 
 ## Next Steps
