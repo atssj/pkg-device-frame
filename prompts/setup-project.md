@@ -3,6 +3,7 @@
 This guide sets up a framework-agnostic device frame component library with framework-specific bindings. The library is tree-shakable and supports Svelte, React, Vue, and vanilla JS.
 
 ## Project Structure
+
 ```
 .
 ├── packages/
@@ -205,6 +206,7 @@ echo "You can now run 'bun run dev' to start development servers."
 ```
 
 ## Next Steps
+
 1. Set up CI/CD with GitHub Actions
 2. Configure testing with Vitest
 3. Add Storybook for component development
@@ -212,6 +214,7 @@ echo "You can now run 'bun run dev' to start development servers."
 5. Configure Prettier and ESLint
 
 ## Development Workflow
+
 ```bash
 # Start development servers
 bun run dev
