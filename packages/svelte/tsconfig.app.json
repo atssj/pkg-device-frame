@@ -1,20 +1,33 @@
+// packages/svelte/tsconfig.app.json
 {
-  "extends": "@tsconfig/svelte/tsconfig.json",
+  "extends": "../../../tsconfig.base.json", // Extend our root base
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "resolveJsonModule": true,
-    /**
-     * Typecheck JS in `.svelte` and `.js` files by default.
-     * Disable checkJs if you'd like to use dynamic types in JS.
-     * Note that setting allowJs false does not prevent the use
-     * of JS in `.svelte` files.
-     */
-    "allowJs": true,
-    "checkJs": true,
-    "isolatedModules": true,
-    "moduleDetection": "force"
+    "composite": true,
+    "outDir": "./dist",
+    "rootDir": "./src", // Assuming source is in src
+
+    // Library & Svelte specific settings
+    "declaration": true,
+    "emitDeclarationOnly": true, // Vite handles JS
+    "noEmit": false,
+
+    // Settings previously from @tsconfig/svelte/tsconfig.json or similar
+    "target": "ESNext", // from previous and base
+    "module": "ESNext", // from previous and base
+    "sourceMap": true, // Good for debugging, was likely in @tsconfig/svelte
+    "resolveJsonModule": true, // from previous, also in our base
+    "allowJs": true, // from previous, also in our base
+    "checkJs": true, // from previous
+    "isolatedModules": true, // from previous, also in our base
+    "moduleDetection": "force", // from previous, also in our base
+    "useDefineForClassFields": true, // from previous
+
+    // Ensure Svelte specific types are sourced if not handled by a plugin/Vite automatically
+    // Usually, `svelte` package itself provides these and Vite's Svelte plugin handles integration.
+    // "types": ["svelte"], // Might not be needed if using svelte-check or LSP handles it
+
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo" // Added for consistency
   },
-  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
+  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"], // from previous
+  "exclude": ["node_modules", "dist", "public", "build"] // Standard excludes, added build just in case
 }

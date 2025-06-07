@@ -1,0 +1,25 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
+    "dev": {
+      "cache": false
+    },
+    "lint": {
+      // This will execute the "lint" script defined in each package's package.json.
+      // In our case, that script is "eslint ." for all packages.
+      "outputs": []
+    },
+    "lint:format": {
+      // This will execute the "lint:format" script from the root package.json.
+      // That script is "prettier --write .".
+      // This task is intended to be run globally (not per-package necessarily,
+      // though Prettier can run per package, this setup makes it a root command).
+      "outputs": []
+    }
+    // We can remove the explicit lint:eslint from turbo.json if "turbo run lint" covers ESLinting.
+  }
+}

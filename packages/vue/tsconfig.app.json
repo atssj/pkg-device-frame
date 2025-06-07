@@ -1,15 +1,41 @@
+// packages/vue/tsconfig.app.json
 {
-  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "extends": "../../../tsconfig.base.json", // Extend our root base
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "composite": true,
+    "outDir": "./dist",
+    "rootDir": "./src", // Assuming source is in src
 
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    // Library & Vue specific settings
+    "declaration": true,
+    "emitDeclarationOnly": true, // Vite handles JS
+    "noEmit": false,
+    "jsx": "preserve", // Vue uses "preserve" and handles JSX in .vue files or via setup functions
+
+    // Settings previously from @vue/tsconfig/tsconfig.dom.json or similar
+    "target": "ESNext", // Align with base, or keep specific if needed
+    "module": "ESNext", // Align with base
+    // "lib": ["ESNext", "DOM", "DOM.Iterable"], // from base.json
+
+    // Vue specific options from @vue/tsconfig or commonly used:
+    // "experimentalDecorators": true, // If using decorators
+    // "strictPropertyInitialization": false, // Might be needed with class components
+    // "resolveJsonModule": true, // from base
+    // "isolatedModules": true, // from base
+    // "esModuleInterop": true, // from base
+    // "skipLibCheck": true, // from base
+    // "moduleResolution": "bundler", // from base
+
+    // Keep other relevant options from its previous version if needed
+    // "strict": true, // from base
+    // "noUnusedLocals": true, // Handled by ESLint or can be kept from previous: "noUnusedLocals": true
+    // "noUnusedParameters": true, // Handled by ESLint or can be kept from previous: "noUnusedParameters": true
+    // "erasableSyntaxOnly": true, // from previous: "erasableSyntaxOnly": true
+    // "noFallthroughCasesInSwitch": true, // from base
+    // "noUncheckedSideEffectImports": true, // from previous: "noUncheckedSideEffectImports": true
+
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo" // Keep from previous
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"], // from previous
+  "exclude": ["node_modules", "dist", "public"] // Standard excludes
 }

@@ -1,27 +1,37 @@
+// packages/react/tsconfig.app.json
 {
+  "extends": "../../../tsconfig.base.json", // Extend the root base
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "composite": true, // Required as it's referenced
+    "outDir": "./dist",
+    "rootDir": "./src", // Assuming source is in src
+    "baseUrl": ".", // For path aliases if any, specific to this package
+    // "paths": { ... }, // Package specific paths
+
+    // Library & React specific settings
+    "declaration": true,
+    "emitDeclarationOnly": true, // Vite handles JS
+    "noEmit": false,
+    "jsx": "react-jsx", // Override base's "preserve"
+
+    // Ensure module settings are compatible
     "module": "ESNext",
-    "skipLibCheck": true,
+    "target": "ESNext", // Or ES2020 as it was before, ESNext is fine from base
 
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "moduleDetection": "force",
-    "noEmit": true,
-    "jsx": "react-jsx",
+    // Keep other relevant options from its previous version if needed
+    "useDefineForClassFields": true, // Was present before
+    // "lib": ["ESNext", "DOM", "DOM.Iterable"], // from base.json
 
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    // Linting related, can often be removed if covered by base or ESLint itself
+    // "strict": true, // from base
+    // "noUnusedLocals": true, // Handled by ESLint or can be kept if desired
+    // "noUnusedParameters": true, // Handled by ESLint or can be kept if desired
+    // "erasableSyntaxOnly": true, // This was specific to older TS/Babel, likely not needed with verbatimModuleSyntax
+    // "noFallthroughCasesInSwitch": true, // from base
+    // "noUncheckedSideEffectImports": true, // This is a good one to keep if desired, but not in base
+
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo" // Keep this for incremental builds
   },
-  "include": ["src"]
+  "include": ["src"], // Standard include for source
+  "exclude": ["node_modules", "dist", "public"] // Standard excludes
 }
