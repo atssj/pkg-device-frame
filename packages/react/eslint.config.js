@@ -1,25 +1,42 @@
-import js from '@eslint/js';
-import globals from 'globals';
-import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
-import tseslint from 'typescript-eslint';
+// @ts-check
 
-export default tseslint.config(
-  { ignores: ['dist'] },
+import rootConfig from "../../eslint.config.js";
+import eslintPluginReact from "eslint-plugin-react";
+import eslintPluginReactHooks from "eslint-plugin-react-hooks";
+// eslint-plugin-react-refresh is often used with Vite for HMR, ensure it's configured if needed.
+// For now, let's include its basic setup.
+import eslintPluginReactRefresh from "eslint-plugin-react-refresh";
+
+export default [
+  ...rootConfig,
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-    },
+    files: ["**/*.{js,jsx,ts,tsx}"],
     plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
+      "react": eslintPluginReact,
+      "react-hooks": eslintPluginReactHooks,
+      "react-refresh": eslintPluginReactRefresh,
+    },
+    languageOptions: {
+      ...eslintPluginReact.configs.recommended.languageOptions,
+      globals: {
+        // Add any React-specific globals if necessary
+      },
+    },
+    settings: {
+      react: {
+        version: "detect", // Automatically detect the React version
+      },
     },
     rules: {
-      ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+      ...eslintPluginReact.configs.recommended.rules,
+      ...eslintPluginReactHooks.configs.recommended.rules,
+      "react/prop-types": "off", // Often off in TypeScript projects
+      "react/react-in-jsx-scope": "off", // Not needed with new JSX transform
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
+      // Add any other React specific rules
     },
-  }
-);
+  },
+];

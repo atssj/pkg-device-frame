@@ -1,5 +1,53 @@
-# Vue 3 + TypeScript + Vite
+# Vue Package
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Overview
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+[Provide a brief overview of the package and its purpose.]
+
+## Installation
+
+```bash
+# Add installation commands here
+npm install @your-scope/vue
+# or
+yarn add @your-scope/vue
+# or
+bun install @your-scope/vue
+```
+
+## Usage
+
+[Provide basic usage examples. Link to more detailed examples in `docs/examples/vue/` if applicable.]
+
+### Example 1: [Brief Description]
+
+```typescript
+// Code snippet for Example 1
+```
+
+### Example 2: [Brief Description]
+
+```typescript
+// Code snippet for Example 2
+```
+
+## API Reference
+
+Detailed API documentation can be found in [../../docs/api/vue.md](../../docs/api/vue.md).
+
+[Optionally, include a brief summary of key API components here.]
+
+### Key Components
+
+*   `ComponentA`: [Brief description]
+*   `functionB`: [Brief description]
+
+## Contributing
+
+We welcome contributions! Please see our [CONTRIBUTING.md](../../CONTRIBUTING.md) for guidelines on how to contribute to this project.
+
+[If you have package-specific contribution notes, add them here.]
+
+## License
+
+This package is licensed under the MIT License. See the [LICENSE](../../LICENSE) file for more details.

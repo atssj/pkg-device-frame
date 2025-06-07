@@ -1,28 +1,28 @@
+// packages/core/tsconfig.json
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    // Environment setup & latest features
-    "lib": ["esnext"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleDetection": "force",
-    "jsx": "react-jsx",
-    "allowJs": true,
+    "composite": true, // Required for project references
+    "outDir": "./dist",
+    "rootDir": "./src", // Specify root directory of source files
 
-    // Bundler mode
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
+    // Library-specific settings
+    "declaration": true, // Generate .d.ts files
+    // "emitDeclarationOnly": true, // Set to true if Vite/other bundler handles JS transpilation
+                                   // For tsup, which is used in packages/core, it typically handles both
+                                   // TS to JS and then d.ts generation, so we might not need emitDeclarationOnly: true.
+                                   // Let's assume tsup handles JS, so TS should only emit declarations.
+    "emitDeclarationOnly": true,
+    "noEmit": false, // Ensure this is false to allow emitting declarations
 
-    // Best practices
-    "strict": true,
-    "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
+    // Override JSX if 'core' doesn't use React/JSX, or set as needed.
+    // 'preserve' from base is fine if no JSX, or if JSX is different from react-jsx.
+    // If core primarily contains TS logic and no JSX, this is less critical.
+    "jsx": "preserve", // Keep as preserve or remove if no JSX at all
 
-    // Some stricter flags (disabled by default)
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
-  }
+    // Ensure module settings are compatible with expected output (e.g., ESNext for modern libraries)
+    "module": "ESNext"
+  },
+  "include": ["src/**/*"], // Include all files in the src directory
+  "exclude": ["node_modules", "dist"] // Exclude node_modules and dist
 }

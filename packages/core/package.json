@@ -1,21 +1,23 @@
 {
   "name": "@device-frame/core",
   "version": "0.1.0",
-  "description": "Core types and utilities for device frame components",
-  "module": "index.ts",
-  "main": "index.ts",
-  "type": "module",
-  "types": "index.ts",
   "private": true,
-  "exports": {
-    ".": {
-      "types": "./index.ts",
-      "import": "./index.ts"
-    }
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/node": "^22.15.30"
+    "@types/node": "^22.15.30",
+    "tsup": "^8.0.0"
   },
   "peerDependencies": {
     "typescript": "^5.8.3"
