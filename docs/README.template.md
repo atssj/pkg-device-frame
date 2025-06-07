@@ -1,4 +1,4 @@
-# Svelte Package
+# [Package Name]
 
 ## Overview
 
@@ -8,16 +8,16 @@
 
 ```bash
 # Add installation commands here
-npm install @your-scope/svelte
+npm install [package-name]
 # or
-yarn add @your-scope/svelte
+yarn add [package-name]
 # or
-bun install @your-scope/svelte
+bun install [package-name]
 ```
 
 ## Usage
 
-[Provide basic usage examples. Link to more detailed examples in `docs/examples/svelte/` if applicable.]
+[Provide basic usage examples. Link to more detailed examples in `docs/examples/[package-name]/` if applicable.]
 
 ### Example 1: [Brief Description]
 
@@ -33,7 +33,7 @@ bun install @your-scope/svelte
 
 ## API Reference
 
-Detailed API documentation can be found in [../../docs/api/svelte.md](../../docs/api/svelte.md).
+Detailed API documentation can be found in [docs/api/[package-name].md](docs/api/[package-name].md).
 
 [Optionally, include a brief summary of key API components here.]
 
@@ -50,4 +50,4 @@ We welcome contributions! Please see our [CONTRIBUTING.md](../../CONTRIBUTING.md
 
 ## License
 
-This package is licensed under the MIT License. See the [LICENSE](../../LICENSE) file for more details.
+This package is licensed under the [License Name] License. See the [LICENSE](../../LICENSE) file for more details.
