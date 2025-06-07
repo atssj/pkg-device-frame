@@ -1,0 +1,13 @@
+{
+  "name": "core",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^22.15.30"
+  },
+  "peerDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
