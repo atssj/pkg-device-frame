@@ -1,8 +1,18 @@
 {
-  "name": "core",
+  "name": "@device-frame/core",
+  "version": "0.1.0",
+  "description": "Core types and utilities for device frame components",
   "module": "index.ts",
+  "main": "index.ts",
   "type": "module",
+  "types": "index.ts",
   "private": true,
+  "exports": {
+    ".": {
+      "types": "./index.ts",
+      "import": "./index.ts"
+    }
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/node": "^22.15.30"
