@@ -1,4 +1,18 @@
+// packages/react/tsconfig.json
 {
-  "files": [],
-  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
+  "extends": "../../tsconfig.base.json", // Extend the root base
+  "compilerOptions": {
+    "composite": true // Enable for project referencing
+    // Specific overrides for this solution tsconfig, if any.
+    // Usually, most settings come from the base or the referenced app/node configs.
+    // "noEmit": true, // Typically true for solution tsconfigs if they don't directly output.
+                     // However, ESLint's parserOptions.project points here for some setups.
+                     // Let's rely on tsconfig.app.json for emit control.
+  },
+  "files": [], // Keep empty, references handle includes
+  "include": [], // Keep empty
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }

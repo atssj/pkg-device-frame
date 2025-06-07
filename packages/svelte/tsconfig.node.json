@@ -1,25 +1,13 @@
+// packages/svelte/tsconfig.node.json
 {
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-    "target": "ES2022",
-    "lib": ["ES2023"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "moduleDetection": "force",
-    "noEmit": true,
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "composite": true,
+    "module": "ESNext", // from base
+    "moduleResolution": "bundler", // Align with base
+    "noEmit": true, // Usually no emit for config files
+    "types": ["node"], // Add node types
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo" // Added for consistency
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts", "svelte.config.js", "eslint.config.js"] // Include relevant config files
 }

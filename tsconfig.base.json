@@ -1,0 +1,40 @@
+// tsconfig.base.json
+{
+  "compilerOptions": {
+    // Environment setup & latest features
+    "lib": ["esnext", "dom", "dom.iterable"], // Added dom/dom.iterable for wider use
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleDetection": "force",
+    "jsx": "preserve", // Preserve JSX by default, packages can override (e.g. react-jsx)
+    "allowJs": true,
+
+    // Bundler mode
+    "moduleResolution": "bundler", // Changed from node16 to bundler for modern tooling
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    // "noEmit": true, // Let consuming configs decide on emit
+
+    // Best practices
+    "strict": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+
+    // Path mapping (useful in monorepos, but requires setup in bundlers too)
+    // "baseUrl": ".",
+    // "paths": {
+    //   "@device-frame/*": ["packages/*/src"]
+    // },
+
+    // Project settings
+    "esModuleInterop": true, // Recommended for wider compatibility
+    "isolatedModules": true, // Good practice with bundlers like Vite/SWC/Babel
+    "resolveJsonModule": true,
+
+    // Stricter flags (can be enabled by packages if desired)
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noPropertyAccessFromIndexSignature": false
+  }
+}
