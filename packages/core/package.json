@@ -1,11 +1,21 @@
 {
   "name": "core",
-  "module": "index.ts",
   "type": "module",
   "private": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsup index.ts --format esm,cjs --dts --clean"
+  },
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/node": "^22.15.30"
+    "@types/node": "^22.15.30",
+    "tsup": "^8.0.0"
   },
   "peerDependencies": {
     "typescript": "^5.8.3"
